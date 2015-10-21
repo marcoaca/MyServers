@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  .jumbotron
+    h1 Bem Vindo!
+  .container
+    if (!user)
+      a(href="/login") Login
+      br
+      a(href="/register") Register
+    if (user)
+      p You are currently logged in as #{user.username}
+      a(href="/logout") Logout
+  .container
+    .btn-group(role='group')
+      button.btn.btn-primary
+        |Procurar Restaurante
+    .btn-group(role='group')
+      button.btn.btn-primary
+        |Escolher aleatóriamente
+    .btn-group(role='group')
+      button.btn.btn-primary
+        |Escolher baseado na localização
+  .container
+    button#locate.btn.btn-primary
+      |Localização
+    #demo

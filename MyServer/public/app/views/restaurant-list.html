@@ -1,0 +1,14 @@
+<div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="restaurant in restaurants">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4><a ng-href="#/restaurant/{{restaurant.id}}">{{restaurant.name}}</a></h4>
+		</div>
+		<div class="panel-body">
+			<img ng-src="{{restaurant.imageUrl}}"/>
+			<div>
+				<span ng-repeat="keyword in restaurant.keywords">{{keyword}}{{$last ? '' : ', '}}</span>
+			</div>
+		</div>
+		<div class="panel-footer">Panel Content</div>
+	</div>
+</div>

@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    title
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(href='/js/bootstrap/css/bootstrap.min.css', rel='stylesheet', media='screen')
+  body
+    .navbar.navbar-default(role='navigation')
+      .container-fluid
+        // Brand and toggle get grouped for better mobile display
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navBar')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          img.img-responsive.pull-left(src='/img/forknife.png', width='70', height='70')
+          .navbar-brand
+            |IZ ForKnife
+             
+        #navBar.collapse.navbar-collapse
+          if(!loggedIn)
+            ul.nav.navbar-nav.navbar-right
+              li
+                button.btn.btn-default.navbar-btn(type='button')
+                  span.glyphicon.glyphicon-log-in
+                  |&nbsp;Login
+          else
+            ul.nav.navbar-nav.navbar-right
+              li
+                button.btn.btn-default.navbar-btn(type='button')
+                  span.glyphicon.glyphicon-log-out 
+                  |&nbsp;Logout
+    block content
+    script(src='https://code.jquery.com/jquery.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
+    script(src='/js/geolocation.js')
