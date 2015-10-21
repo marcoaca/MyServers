@@ -1,6 +1,10 @@
 var restApp = angular.module('restApp',['ngRoute', 'controllers'])
 	.config(function($routeProvider) {
 		$routeProvider
+			.when('/', {
+				controller: "restListCtrl",
+				templateUrl: "/app/views/restaurant-list.html"
+			})
 			.when('/restaurants', {
 				controller: "restListCtrl",
 				templateUrl: "/app/views/restaurant-list.html"
