@@ -1,15 +1,51 @@
 var controllers = angular.module('controllers',[]);
 
-controllers.controller('HomeCtrl'['$scope', function($scope){
+controllers.controller('homeCtrl', ['$scope', function($scope){
 	
-}])
+}]);
+
+controllers.controller('authenticateCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+	$scope.user = {};
+	$scope.authenticate = function(){
+		console.log($scope.user);
+		$http.post('/authenticate', $scope.user)
+			.success(function (data, status, headers, config) {
+				$window.sessionStorage.token = data.token;
+				$scope.message = 'Welcome';
+			})
+			.error(function (data, status, headers, config) {
+				// Erase the token if the user fails to log in
+				delete $window.sessionStorage.token;
+				$scope.errors = data;
+				// Handle login errors here
+				$scope.message = 'Error: Invalid user or password';
+			})
+	};
+}]);
+
+controllers.controller('registerCtrl', ['$rootScope', '$scope', '$http', '$location', function($rootScope, $scope, $http, $location) {
+	$scope.newUser = {};
+	$scope.errors = {};
+	console.log($scope.newUser);
+	$scope.register = function(){
+		$http.post('/createuser', $scope.newUser ).then(
+				function successCallback(response){
+					if('200'===response.status){
+						$location.path('/');
+					}
+				},
+				function errorCalback(response){
+					$rootScope.errors=response.data;
+				})
+	}
+}]);
 
 controllers.controller('restListCtrl', ['$scope','$location', '$http', function($scope,$location,$http) {
 	$http.get('/restaurants').success(function(data) {
 		$scope.restaurants = data;});
 	
 	$scope.viewDetails = function(restaurantId){
-		console.log("clicl details " + restaurantId);
+		console.log("click details " + restaurantId);
 		$location.path('#/restaurants/' + restaurantId);
 	};
 }]);

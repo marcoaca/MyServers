@@ -1,7 +1,9 @@
-var express = require('express');
-var fs		= require('fs'); 		
-var router 	= express.Router();
-var bcrypt	= require('bcryptjs');
+var express 	= require('express');
+var fs			= require('fs'); 		
+var router 		= express.Router();
+var bcrypt		= require('bcryptjs');
+var expressJwt 	= require('express-jwt');
+var jwt 		= require('jsonwebtoken');
 
 function authenticate(req, res, next) {
 	if (!req.body) {
@@ -37,43 +39,45 @@ function VerifyAndCreateUser(user){
 	fs.writeFileSync(__dirname + '/../data/users.json', JSON.stringify(users), 'utf-8');
 };
 
-router.get('*', function(req, res, next) {
-	res.locals.loggedIn = (req.user) ? true : false;
-	next();
-});
+router.use('/api', expressJwt({secret: '2280C0A70B1CA6B4C07768880DA1F9C55DA82ED6'}));
 
 /* GET home page. */
 router.get('/', function (req, res) {
     res.render('index', { user : req.user });
 });
 
-router.get('/register', function(req, res) {
-    res.render('register', { });
-});
 router.post('/createuser', function(req,res){
 	var user = {
 		email: req.body.email,
 		password: req.body.password
 	};
 	console.log(user);
-	VerifyAndCreateUser(user);
-	res.redirect(200, '/');
+	res.send(401, 'Wrong user or password');
+	//VerifyAndCreateUser(user);
+	//res.redirect(200, '/');
 });
 
-router.get('/login', function(req, res) {
-    res.render('login', { csrfToken : req.csrfToken() });
+router.post('/authenticate', function(req,res){
+	if (!(req.body.email === 'john.doe' && req.body.password === 'foobar')) {
+		res.status(401).send('Wrong user or password');
+		return;
+	}
+	var profile = {
+		    email: req.body.email,
+		    id: 123
+		  };
+	var token = jwt.sign(profile, '2280C0A70B1CA6B4C07768880DA1F9C55DA82ED6', { expiresInMinutes: 60*5 });
+	res.json({ token: token });
 });
 
-router.post('/login', function(req,res){
-	res.render('/profile', {user:req.user});
+router.get('/api/restricted', function(req, res) {
+	console.log('user ' + req.user.email + ' is calling /api/restricted');
+	res.json({
+		name : 'foo'
+	});
 });
 
-router.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
-});
-
-router.post('/createrestaurant', function(req,res) {
+router.post('/api/createrestaurant', function(req,res) {
 	try{
 	console.log(req.body);
 	var name = req.body.name ? req.body.name :'';
@@ -107,7 +111,7 @@ router.post('/createrestaurant', function(req,res) {
 	}
 });
 
-router.get('/restaurants', function(req,res){
+router.get('/api/restaurants', function(req,res){
 	var file = fs.readFileSync(__dirname + "/../data/restaurants.json", 'utf-8');
     res.send(JSON.parse(file));
 });

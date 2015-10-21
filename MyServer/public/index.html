@@ -37,30 +37,32 @@
 			</div>
 		</div>
 	</div>
-
+	<div class="container">
+		<div class="alert alert-danger" role="alert" ng-show="errors">{{errors}}</div>
+	</div>
+	<div class="container">
+		<div class="alert alert-info" role="alert" ng-show="messages">{{messages}}</div>
+	</div>
 	<div class="container-fluid clearfix" ng-view>
 	</div>
 
-	<div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" ng-controller="authenticateCtrl">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">x</button>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 					<h1 class="text-center">Login</h1>
 				</div>
 				<div class="modal-body">
-					<form class="form col-md-12 center-block">
+					<form class="form col-md-12 center-block" ng-submit="authenticate()">
 						<div class="form-group">
-							<input class="form-control input-lg" placeholder="User Name"
-								type="text">
+							<input class="form-control input-lg" placeholder="Email" type="text" ng-model="user.email">
 						</div>
 						<div class="form-group">
-							<input class="form-control input-lg" placeholder="Password"
-								type="password">
+							<input class="form-control input-lg" placeholder="Password" type="password" ng-model="user.password">
 						</div>
 						<div class="form-group">
-							<button class="btn btn-primary btn-lg btn-block">Sign In</button>
+							<button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
 						</div>
 					</form>
 				</div>
@@ -72,7 +74,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="registerModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<div id="registerModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" ng-controller="registerCtrl">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -81,21 +83,15 @@
 					<h1 class="text-center">Registration details</h1>
 				</div>
 				<div class="modal-body">
-					<form class="form col-md-12 center-block">
-					<div class="form-group">
-							<input class="form-control input-lg" placeholder="Email"
-								type="text">
+					<form class="form col-md-12 center-block" ng-submit="register()">
+						<div class="form-group">
+							<input class="form-control input-lg" placeholder="Email" type="text" ng-model="newUser.email">
 						</div>
 						<div class="form-group">
-							<input class="form-control input-lg" placeholder="User Name"
-								type="text">
+							<input class="form-control input-lg" placeholder="Password" type="password" ng-model="newUser.password">
 						</div>
 						<div class="form-group">
-							<input class="form-control input-lg" placeholder="Password"
-								type="password">
-						</div>
-						<div class="form-group">
-							<button class="btn btn-primary btn-lg btn-block">Send</button>
+							<button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
 						</div>
 					</form>
 				</div>

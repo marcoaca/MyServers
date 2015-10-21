@@ -1,1 +1,1 @@
-{"ide":{},"plugins":{"outline":{},"node":{},"angular":{},"node-express":{},"node-extension":{},"bootstrap":{},"jquery-ui1-12":{}},"libs":["ecma5","browser","jquery"]}
+{"ide":{},"libs":["ecma5","jquery"],"plugins":{"node":{},"angular":{},"node-express":{},"bootstrap":{},"jquery-ui1-12":{}}}
