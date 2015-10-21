@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="restApp">
+<html ng-app="controllers">
 <head>
 	<title>ForKnifE</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -18,8 +18,8 @@
 			</div>
 			<div id="navBar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<button ng-sh type="button" class="btn btn-primary navbar-btn" data-target="#loginModal" data-toggle="modal">
+					<li ng-show="isAuthenticated">
+						<button type="button" class="btn btn-primary navbar-btn" ng-click="login()">
 							<span class="glyphicon glyphicon-log-in"></span>&nbsp;Login
 						</button>
 					</li>
@@ -44,35 +44,6 @@
 		<div class="alert alert-info" role="alert" ng-show="messages">{{messages}}</div>
 	</div>
 	<div class="container-fluid clearfix" ng-view>
-	</div>
-
-	<div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" ng-controller="authenticateCtrl">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-					<h1 class="text-center">Login</h1>
-				</div>
-				<div class="modal-body">
-					<form class="form col-md-12 center-block" ng-submit="authenticate()">
-						<div class="form-group">
-							<input class="form-control input-lg" placeholder="Email" type="text" ng-model="user.email">
-						</div>
-						<div class="form-group">
-							<input class="form-control input-lg" placeholder="Password" type="password" ng-model="user.password">
-						</div>
-						<div class="form-group">
-							<button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer" style="border-top-width: 0px;">
-					<div class="col-md-12">
-						<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 	<div id="registerModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" ng-controller="registerCtrl">
 		<div class="modal-dialog">

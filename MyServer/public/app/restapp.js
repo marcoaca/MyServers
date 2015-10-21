@@ -7,6 +7,10 @@ var restApp = angular.module('restApp',['ngRoute', 'controllers'])
 				controller: 'homeCtrl',
 				templateUrl: '/app/views/home.html'
 			})
+			.when('', {
+				controller: "authenticateCtrl",
+				templateUrl: "/app/views/login.html"
+			})
 			.when('/restaurants', {
 				controller: "restListCtrl",
 				templateUrl: "/app/views/restaurant-list.html"

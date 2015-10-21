@@ -1,24 +1,25 @@
 var controllers = angular.module('controllers',[]);
 
-controllers.controller('homeCtrl', ['$scope', function($scope){
-	
+controllers.controller('homeCtrl', ['$scope', '$location', function($scope, $location){
+	$scope.login = function(){
+		$location.path('/login');
+	}
 }]);
 
 controllers.controller('authenticateCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
 	$scope.user = {};
+	$scope.error = '';
 	$scope.authenticate = function(){
 		console.log($scope.user);
 		$http.post('/authenticate', $scope.user)
 			.success(function (data, status, headers, config) {
 				$window.sessionStorage.token = data.token;
-				$scope.message = 'Welcome';
+				$("#loginModal").removeClass("in");
 			})
 			.error(function (data, status, headers, config) {
 				// Erase the token if the user fails to log in
 				delete $window.sessionStorage.token;
-				$scope.errors = data;
-				// Handle login errors here
-				$scope.message = 'Error: Invalid user or password';
+				$scope.error = data;
 			})
 	};
 }]);
