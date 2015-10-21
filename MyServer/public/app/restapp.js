@@ -14,5 +14,4 @@ var restApp = angular.module('restApp',['ngRoute', 'controllers'])
 				templateUrl: "/app/views/addrestaurant.html"
 			})
 			.otherwise({redirectTo: '/restaurants'});
-	})
-;
+	});
