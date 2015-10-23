@@ -66,7 +66,7 @@ router.post('/authenticate', function(req,res){
 		    email: req.body.email,
 		    id: 123
 		  };
-	var token = jwt.sign(profile, '2280C0A70B1CA6B4C07768880DA1F9C55DA82ED6', { expiresInMinutes: 60*5 });
+	var token = jwt.sign(profile, '2280C0A70B1CA6B4C07768880DA1F9C55DA82ED6', { expiresIn: 60*60 });
 	res.json({ token: token });
 });
 

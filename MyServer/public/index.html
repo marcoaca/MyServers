@@ -19,7 +19,7 @@
 			<div id="navBar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li ng-show="!isAuthenticated">
-						<button type="button" class="btn btn-primary navbar-btn" ng-click="login()">
+						<button type="button" class="btn btn-primary navbar-btn" data-target="#loginModal" data-toggle="modal">
 							<span class="glyphicon glyphicon-log-in"></span>&nbsp;Login
 						</button>
 					</li>
@@ -29,7 +29,7 @@
 						</button>
 					</li>
 					<li ng-show="isAuthenticated">
-						<button type="button" class="btn btn-primary navbar-btn" data-target="#loginModal" data-toggle="modal">
+						<button type="button" class="btn btn-primary navbar-btn" >
 							<span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout
 						</button>
 					</li>
@@ -56,13 +56,13 @@
 				<div class="modal-body">
 					<form class="form col-md-12 center-block" ng-submit="login()">
 						<div class="form-group">
-							<input class="form-control input-lg" placeholder="Email" type="text" ng-model="newUser.email">
+							<input class="form-control input-lg" placeholder="Email" type="text" ng-model="user.email">
 						</div>
 						<div class="form-group">
-							<input class="form-control input-lg" placeholder="Password" type="password" ng-model="newUser.password">
+							<input class="form-control input-lg" placeholder="Password" type="password" ng-model="user.password">
 						</div>
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+							<button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="authenticate()">Submit</button>
 						</div>
 					</form>
 				</div>

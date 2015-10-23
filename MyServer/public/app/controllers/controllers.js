@@ -1,36 +1,36 @@
 var controllers = angular.module('controllers',[]);
 
-controllers.controller('pageCtrl', ['$scope', function($scope){
-	$scope.isAuthenticated = false;
+controllers.controller('pageCtrl', ['$scope', '$rootScope', function($scope,$rootScope){
+	$rootScope.isAuthenticated = false;
 	$scope.errors = '';
 	$scope.messages = '';
 }]);
 
 controllers.controller('navigationCtrl', ['$scope', '$location', function($scope, $location){
-	$scope.login = function(){
-		$location.path('/login');
-	};
+
 }]);
+
+
 
 controllers.controller('homeCtrl', ['$scope', '$location', function($scope, $location){
-	$scope.login = function(){
-		$location.path('/login');
-	}
+	
 }]);
 
-controllers.controller('authenticateCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+controllers.controller('loginCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
 	$scope.user = {};
+	$scope.auth_error = '';
 	$scope.authenticate = function(){
 		console.log($scope.user);
 		$http.post('/authenticate', $scope.user)
 			.success(function (data, status, headers, config) {
 				$window.sessionStorage.token = data.token;
-				$("#loginModal").removeClass("in");
+				$rootScope.isAuthenticated = true;
+				$('#loginModal').modal('hide');
 			})
 			.error(function (data, status, headers, config) {
 				// Erase the token if the user fails to log in
 				delete $window.sessionStorage.token;
-				$scope.error = data;
+				$scope.auth_error = data;
 			})
 	};
 }]);
