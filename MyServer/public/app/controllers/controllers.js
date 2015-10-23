@@ -1,5 +1,17 @@
 var controllers = angular.module('controllers',[]);
 
+controllers.controller('pageCtrl', ['$scope', function($scope){
+	$scope.isAuthenticated = false;
+	$scope.errors = '';
+	$scope.messages = '';
+}]);
+
+controllers.controller('navigationCtrl', ['$scope', '$location', function($scope, $location){
+	$scope.login = function(){
+		$location.path('/login');
+	};
+}]);
+
 controllers.controller('homeCtrl', ['$scope', '$location', function($scope, $location){
 	$scope.login = function(){
 		$location.path('/login');
@@ -8,7 +20,6 @@ controllers.controller('homeCtrl', ['$scope', '$location', function($scope, $loc
 
 controllers.controller('authenticateCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
 	$scope.user = {};
-	$scope.error = '';
 	$scope.authenticate = function(){
 		console.log($scope.user);
 		$http.post('/authenticate', $scope.user)
@@ -26,8 +37,6 @@ controllers.controller('authenticateCtrl', ['$scope', '$http', '$window', functi
 
 controllers.controller('registerCtrl', ['$rootScope', '$scope', '$http', '$location', function($rootScope, $scope, $http, $location) {
 	$scope.newUser = {};
-	$scope.errors = {};
-	console.log($scope.newUser);
 	$scope.register = function(){
 		$http.post('/createuser', $scope.newUser ).then(
 				function successCallback(response){
