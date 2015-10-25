@@ -1,5 +1,3 @@
-
-
 var restApp = angular.module('restApp',['ngRoute', 'controllers'])
 	.config(function($routeProvider) {
 		$routeProvider
