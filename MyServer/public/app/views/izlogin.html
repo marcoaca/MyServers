@@ -1,0 +1,20 @@
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 center-block" style="float:none;">
+	<div class="panel panel-primary transparent" ng-controller="loginCtrl">
+		<div class="panel-body">
+			<div class="alert-info" ng-show="auth_error"></div>
+			<form class="form input-group-sm" ng-submit="authenticate()">
+				<div class="form-group">
+					<input class="form-control" placeholder="User Name"
+						type="text" ng-model="credentials.username">
+				</div>
+				<div class="form-group">
+					<input class="form-control" placeholder="Password"
+						type="password" ng-model="credentials.password">
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm center-block">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
