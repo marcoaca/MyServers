@@ -12,7 +12,7 @@ izcontrollers.controller('loginCtrl', ['$scope', '$rootScope', '$location', '$ht
 	$scope.auth_error = '';
 	$scope.authenticate = function(){
 		alertService.clear();
-		$http.post('http://izdoors/login/', $.param($scope.credentials), {headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'}}).then(
+		$http.post('http://10.8.25.11/login/', $.param($scope.credentials), {headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'}}).then(
 			function successCallback (response) {
 				if(response.data.msg.code == 1){
 					$window.localStorage.token = response.data.token;
