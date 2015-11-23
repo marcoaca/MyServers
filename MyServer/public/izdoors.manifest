@@ -1,0 +1,23 @@
+CACHE MANIFEST
+# 2015-11-23 v1.0.0
+
+SETTINGS:
+prefer-online
+
+NETWORK:
+*
+
+CACHE:
+index.html
+js/jquery-2.1.4.min.js
+js/bootstrap.min.js
+js/angular.min.js
+js/angular-route.min.js
+app/izdoors.js
+app/controllers/izcontrollers.js
+app/views/izlogin.html
+app/views/izopendoor.html
+img/411.png
+img/412.png
+img/blue_light-land.jpg
+css/style.css
