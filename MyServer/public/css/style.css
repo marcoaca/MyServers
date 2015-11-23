@@ -1,21 +1,47 @@
-.transparent{
+html, body{
+	height:100%;
+	width:100%; 
+	margin:0; 
+	padding:0; 
+	border:0;
+}
+body{
+	background-image: url('../img/blue_light-land.jpg') ;
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+.transparent {
 	background-color: transparent;
 }
-
-#bg {
-  position: fixed; 
-  top: -50%; 
-  left: -50%; 
-  width: 200%; 
-  height: 200%;
+.center-screen{
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
 }
-#bg img {
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  right: 0; 
-  bottom: 0; 
-  margin: auto; 
-  min-width: 50%;
-  min-height: 50%;
+.panel{
+	margin: 0px;
+}
+
+.container-fluid{
+  min-height: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: -webkit-flex; /* For Safari */
+  -webkit-justify-content: center; /* For Safari */
+  -webkit-align-items: center; /* For Safari */
+}
+
+.centering {
+  float:none;
+  margin:0 auto;
 }

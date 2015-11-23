@@ -1,33 +1,43 @@
 <!DOCTYPE html>
 <html ng-app="izdoors">
-<head>
+<head manifest="izdoors.manifest">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>IZ Doors</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
 
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="https://code.angularjs.org/1.4.7/angular.min.js"></script>
-	<script type="text/javascript" src="https://code.angularjs.org/1.4.7/angular-route.min.js"></script>
+	<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/angular.min.js"></script>
+	<script type="text/javascript" src="/js/angular-route.min.js"></script>
 	<script type="text/javascript" src="/app/izdoors.js"></script>
 	<script type="text/javascript" src="/app/controllers/izcontrollers.js"></script>	
 </head>
 <body>
-	<div id="bg" style="z-index: -1">
-		<img src="./img/blue_light-land.jpg" alt="">
+	<div class="container-fluid" ng-view>
 	</div>
-	<div class="container-fluid center-block clearfix" ng-view>
-		
-	</div>
-	<div ng-show="alerts" class="container">
-  		<span ng-repeat="alert in alerts" class="alert alert-{{alert.type}} center-block" style="float: none;">
-  			{{ alert.msg }} 
-  			<button type="button" class="close" ng-click="closeAlert($index)">
-  				<span aria-hidden="true">&times;</span>
-  			</button>
-  		</span>
+	<div id="alerts-modal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+						<span class="glyphicon glyphicon-remove-circle"></span>
+					</button>
+					<h4 class = "modal-title" id="modal-title">
+            		</h4>
+				</div>
+				<div class="modal-body">
+					<span ng-repeat="alert in alerts" class="alert alert-{{alert.type}} center-block" style="float: none;">
+	  					{{ alert.msg }}
+	  				</span>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						Close
+					</button>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

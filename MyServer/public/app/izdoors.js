@@ -22,6 +22,7 @@ izdoors.factory('authInterceptor',function($rootScope, $q, $window) {
 		request : function(config) {
 			config.headers = config.headers || {};
 			config.headers["X-IZDoors-API"] = '2';
+			config.headers["Content-Type"] = 'application/x-www-form-urlencoded; charset=utf-8';
 			if ($window.localStorage.token) {
 				config.headers["X-IZDoors-Token"] = $window.localStorage.token;
 			}
@@ -40,7 +41,7 @@ izdoors.factory('authInterceptor',function($rootScope, $q, $window) {
 izdoors.factory('alertService', function($rootScope, $timeout) {
     var alertService = {};
     $rootScope.alerts = [];
-    alertService.add = function(type, msg, timeout) {
+    alertService.add = function(type, title, msg, timeout) {
     	$rootScope.alerts.push({
     		type: type,
             msg: msg,
@@ -54,6 +55,9 @@ izdoors.factory('alertService', function($rootScope, $timeout) {
                 alertService.closeAlert(this); 
             }, timeout); 
         }
+        
+        $('#alerts-modal').modal({backdrop:true, show:true, keyboard:true});
+        $('#modal-title').text(title);
     };
 
     alertService.closeAlert = function(index) {
