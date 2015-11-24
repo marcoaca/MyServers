@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(helmet.frameguard('deny'));
 app.use(helmet.ieNoOpen());
 app.use(helmet.noSniff());
-app.use(helmet.noCache());
+//app.use(helmet.noCache());
 app.use(helmet.xssFilter({ setOnOldIE: true }));
 //app.use(cookieParser());
 app.use(compression());

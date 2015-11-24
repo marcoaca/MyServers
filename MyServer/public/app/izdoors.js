@@ -42,6 +42,7 @@ izdoors.factory('alertService', function($rootScope, $timeout) {
     var alertService = {};
     $rootScope.alerts = [];
     alertService.add = function(type, title, msg, timeout) {
+    	$rootScope.alerts = [];
     	$rootScope.alerts.push({
     		type: type,
             msg: msg,
@@ -55,9 +56,9 @@ izdoors.factory('alertService', function($rootScope, $timeout) {
                 alertService.closeAlert(this); 
             }, timeout); 
         }
-        
-        $('#alerts-modal').modal({backdrop:true, show:true, keyboard:true});
         $('#modal-title').text(title);
+        $('#alerts-modal').modal({backdrop:true, show:true, keyboard:true});
+        
     };
 
     alertService.closeAlert = function(index) {

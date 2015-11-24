@@ -31,9 +31,9 @@ izcontrollers.controller('loginCtrl', ['$scope', '$rootScope', '$location', '$ht
 							}
 						},
 						function error(resp){
-							alertService.add('danger', resp.statusText);							
+							alertService.add('danger', 'Something went wrong', "No response from internal or external service.\nCheck your connection.");							
 						}
-					);
+				);
 			})
 	};
 }]);
@@ -87,7 +87,7 @@ izcontrollers.controller('opendoorCtrl', ['$scope', '$rootScope', '$location', '
 							}
 						},
 						function error(resp){
-							alertService.add('danger', resp.statusText);							
+							alertService.add('danger','Something went wrong', "No response from internal or external service.\nCheck your connection.");							
 						}
 					);
 				});
