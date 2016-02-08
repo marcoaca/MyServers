@@ -1,0 +1,11 @@
+<div>
+	Clientes:<br>
+	<select id="select_cliente" ng-options="cliente.clienteid as cliente.nome for cliente in data.clientes" ng-model="data.clienteid" ng-change="consultas(data.clienteid)"></select>
+	<hr>
+	Consultas:<br>
+	<!--<select id="select_consulta" ng-options="consulta.consultaid as consulta.texto for consulta in data.consultas | filter:{clienteid : data.clienteid}" ng-model="data.consultaid"></select>-->
+	<select id="select_consulta" ng-options="item as item.consultaid for item in data.consultas" ng-model="selected"></select>
+	<hr>
+	<textarea ng-show="selected" ng-model="selected.texto"></textarea><br>
+
+</div>
